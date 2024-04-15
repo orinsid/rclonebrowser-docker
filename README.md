@@ -1,9 +1,16 @@
 # rclonebrowser-docker
-在arm64平台上编译的rclonebrowser, rclone=v1.66.0, rclonebrowser=1.8.0, alpine=3.15
+
+在arm64平台上编译的rclonebrowser镜像
+
+rclone=v1.66.0
+
+rclonebrowser=1.8.0
+
+alpine=3.15
 
 [docker项目地址](https://hub.docker.com/r/orinsid/rclonebrowser)
 
-此版本在arm64位平台编译，其他平台版本见。
+此为arm64位版本，其他平台版本见下方，部署方式保持一致
 
 A repository for creating a docker container including RClone Browser with GUI interface, based on [kapitainsky fork](https://github.com/kapitainsky/RcloneBrowser)
 
