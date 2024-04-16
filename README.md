@@ -14,6 +14,10 @@ alpine=3.15
 
 其他平台和英文使用文档可以在[这里](https://github.com/romancin/rclonebrowser-docker)找到
 
+### 运行示例：
+
+![运行示例](https://github.com/orinsid/rclonebrowser-docker/blob/78d0e3e3c526b676cb37f3078fd119f6f92814a2/RcloneBrowser.jpg)
+
 ### 指示：
 
 将任何本地端口映射到 5800 以进行 Web 访问
