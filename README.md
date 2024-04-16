@@ -16,7 +16,7 @@ alpine=3.15
 
 ### 运行示例：
 
-![运行示例](https://github.com/orinsid/rclonebrowser-docker/blob/78d0e3e3c526b676cb37f3078fd119f6f92814a2/RcloneBrowser.jpg)
+![运行示例](https://github.com/orinsid/rclonebrowser-docker/blob/master/RcloneBrowser.jpg)
 
 ### 指示：
 
