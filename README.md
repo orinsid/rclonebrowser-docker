@@ -10,7 +10,7 @@ alpine=3.15
 
 [docker项目地址](https://hub.docker.com/r/orinsid/rclonebrowser)
 
-感谢[romancin](https://github.com/romancin/rclonebrowser-docker)和[kapitainsky fork](https://github.com/kapitainsky/RcloneBrowser)为这个项目做出的努力，感谢[lesage](https://github.com/jlesage/docker-baseimage-gui)为 GUI 应用程序提供了出色的arm64基础映像。
+感谢[romancin](https://github.com/romancin/rclonebrowser-docker)和[kapitainsky](https://github.com/kapitainsky/RcloneBrowser)为这个项目做出的努力，感谢[lesage](https://github.com/jlesage/docker-baseimage-gui)为 GUI 应用程序提供了出色的arm64基础映像。
 
 其他平台和英文使用文档可以在[这里](https://github.com/romancin/rclonebrowser-docker)找到
 
@@ -57,12 +57,12 @@ networks: {}
 浏览`http://your-host-ip:5800`以访问 RClone Browser GUI
 
 ### 环境变量
-要自定义容器的某些属性，可以通过`-e` 参数传递以下环境变量（每个变量一个）。 该参数的值的格式为 `<VARIABLE_NAME>=<VALUE>`.
+要自定义容器的某些属性，可以通过`-e` 参数传递以下环境变量（每个变量一个）。 该参数的值的格式为 `<VARIABLE_NAME>=<VALUE>`
 
 | 参数       | 描述                                 | 默认值 |
 |----------------|----------------------------------------------|---------|
-|`USER_ID`| 应用程序运行的用户 ID。 请参阅[用户/组 ID](#用户/组-ID)以更好地了解何时应进行设置 | `1000` |
-|`GROUP_ID`| 应用程序运行所在组的 ID。 请参阅[用户/组 ID](#用户/组-ID) 以更好地了解何时应设置此值| `1000` |
+|`USER_ID`| 应用程序运行的用户 ID。 请参阅[用户/组 ID](#用户组-id)以更好地了解何时应进行设置 | `1000` |
+|`GROUP_ID`| 应用程序运行所在组的 ID。 请参阅[用户/组 ID](#用户组-id) 以更好地了解何时应设置此值| `1000` |
 |`SUP_GROUP_IDS`| 应用程序的补充组 ID 的逗号分隔列表 | (unset) |
 |`UMASK`| 控制如何为新创建的文件设置文件权限的掩码。 掩码的值采用八进制表示法。 默认情况下，未设置此变量，并使用默认的 umask“022”，这意味着新创建的文件可供所有人读取，但只能由所有者写入。 请参阅以下在线 umask 计算器：http://wintelguy.com/umask-calc.pl | (unset) |
 |`TZ`| 容器的[时区]。 还可以通过在主机和容器之间映射“/etc/localtime”来设置时区 | `Etc/UTC` |
@@ -72,13 +72,15 @@ networks: {}
 |`DISPLAY_WIDTH`| 应用程序窗口的宽度（以像素为单位） | `1280` |
 |`DISPLAY_HEIGHT`| 应用程序窗口的高度（以像素为单位） | `768` |
 |`SECURE_CONNECTION`| 当设置为“1”时，将使用加密连接来访问应用程序的 GUI（通过 Web 浏览器或 VNC 客户端）。 有关更多详细信息，请参阅[安全](#安全) 部分 | `0` |
-|`VNC_PASSWORD`| 连接到应用程序 GUI 所需的密码。 有关更多详细信息，请参阅 [VNC 密码](#VNC-密码) 部分| (unset) |
+|`VNC_PASSWORD`| 连接到应用程序 GUI 所需的密码。 有关更多详细信息，请参阅 [VNC 密码](#vnc-密码) 部分| (unset) |
 |`X11VNC_EXTRA_OPTS`| 传递到 Docker 容器中运行的 x11vnc 服务器的额外选项。 **警告**：对于高级用户。 除非您知道自己在做什么，否则请勿使用 | (unset) |
 |`ENABLE_CJK_FONT`| 当设置为“1”时，将安装开源计算机字体“WenQuanYi Zen Hei”。 该字体包含大量中文/日文/韩文字符 | `0` |
 
 ### 数据存储
 
-下表描述了容器使用的数据存储目录。 映射通过“-v”参数设置。 每个映射都用以下指定格式：`<HOST_DIR>:<CONTAINER_DIR>[:PERMISSIONS]`。
+下表描述了容器使用的数据存储目录。 映射通过“-v”参数设置。 每个映射都用以下指定格式：
+
+```<HOST_DIR>:<CONTAINER_DIR>[:PERMISSIONS]```
 
 | 容器路径 | 权限 | 描述 |
 |-----------------|-------------|-------------|
@@ -87,7 +89,11 @@ networks: {}
 
 ### 端口
 
-这是容器使用的端口列表。 它们可以映射到主机通过“-p”参数（每个端口映射一个）。 每个映射都定义在以下格式：`<HOST_PORT>:<CONTAINER_PORT>`。 里面的端口号容器无法更改，但您可以自由使用主机端的任何端口。
+这是容器使用的端口列表。 它们可以映射到主机通过“-p”参数（每个端口映射一个）。 每个映射都定义在以下格式：
+
+```<HOST_PORT>:<CONTAINER_PORT>```
+
+里面的端口号容器无法更改，但您可以自由使用主机端的任何端口。
 
 | 端口 | 映射到主机 | 描述 |
 |------|-----------------|-------------|
@@ -130,7 +136,7 @@ uid=1000(myuser) gid=1000(myuser) groups=1000(myuser),4(adm),24(cdrom),27(sudo),
 以下是容器所需的证书文件。 默认情况下，当它们丢失时，将生成并使用自签名证书。 所有文件都有 PEM 编码的 x509 证书。
 
 | 容器路径                 | 目的                   | 内容 |
-|---------------------------------|----------------------------|---------|
+|-----------------------------------|----------------------------|---------|
 |`/config/certs/vnc-server.pem`   |VNC 连接加密  |VNC 服务器的私钥和证书，与任何根证书和中间证书捆绑在一起|
 |`/config/certs/web-privkey.pem`  |HTTPs 连接加密 |Web 服务器的私钥|
 |`/config/certs/web-fullchain.pem`|HTTPs 连接加密 |Web 服务器的证书，与任何根证书和中间证书捆绑在一起|
@@ -151,14 +157,14 @@ VNC 密码提供的安全级别取决于两件事：
 
 使用 VNC 密码时，非常需要启用安全连接，以防止通过未加密的通道以明文形式发送密码。
 
-**注意**：密码不得超过 8 个字符。 此限制来自远程帧缓冲协议 [RFC](https://tools.ietf.org/html/rfc6143)（请参阅第 [7.2.2](https://tools.ietf.org/html/rfc6143#section -7.2.2))。 任何超出限制的字符都将被忽略。
+**注意**：密码不得超过 8 个字符。 此限制来自远程帧缓冲协议 [RFC](https://tools.ietf.org/html/rfc6143)（请参阅第 [7.2.2](https://tools.ietf.org/html/rfc6143#section-7.2.2))。 任何超出限制的字符都将被忽略。
 
 ## Shell 访问
 
 要获得对正在运行的容器的 shell 访问权限，请执行以下命令：
 
 ```
-docker exec -it CONTAINER sh
+docker exec -it CONTAINER /bin/sh
 ```
 
 其中“CONTAINER”是创建期间使用的容器的 ID 或名称。
